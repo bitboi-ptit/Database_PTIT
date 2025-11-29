@@ -1,0 +1,94 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package GUI.ManagerSale.Component;
+
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
+
+import BUS.BusAccessor.SanPhamBUS;
+import DataAccess.DataAccessObject.SanPhamDAO;
+import DataTransfer.SanPham;
+import GUI.ManagerSale.BasicHandle.HandleClickAddEvent;
+
+/**
+ *
+ * @author huykh
+ */
+public class MenuPanel extends ScrollPanel{
+    private final SanPhamDAO spDAO = new SanPhamDAO();
+    private final SanPhamBUS spbus = new SanPhamBUS();
+    private List<SanPham> listData;
+    private final OrderPanel orderpanel;
+    
+    public MenuPanel(int width, int height, OrderPanel orderPanel){
+        super(width, height);
+        this.orderpanel = orderPanel;
+        listData = new ArrayList<>();
+    }
+//    
+//    public void getAllProduct(){
+//        List<SanPham> list = spDAO.selectAll();
+//        adDataTransferPanel(list);
+//    }
+//    //Done
+//    public void getProductByType(int maLoai){
+//        List<SanPham> list = spDAO.selectByLoaiSP(maLoai);
+//        adDataTransferPanel(list);
+//    }
+//    
+//    public void getProductByName(String name){
+//        List<SanPham> list = spDAO.selectByTenSP(name);
+//        adDataTransferPanel(list);
+//    }
+//    
+//    public void getProductByNameAndType(int maLoai, String name){
+//        if (maLoai == 0){
+//            List<SanPham> list = spDAO.selectByTenSP(name);
+//            adDataTransferPanel(list);
+//            return;
+//        }
+//        List<SanPham> list = spDAO.selectByTenSPAndLoaiSP(maLoai, name);
+//        adDataTransferPanel(list);
+//    }
+
+    public void adDataTransferPanel(SanPham sp) {
+        MenuItem item = new MenuItem(sp);
+        item.getButtonAdd().addActionListener(new HandleClickAddEvent(sp, orderpanel));
+        this.panel.add(item);
+        this.panel.revalidate();
+        this.panel.repaint();
+//        System.out.println("Call add");
+        this.panel.setPreferredSize(new Dimension((int)this.panel.getPreferredSize().getWidth(),calculateHeight()));
+    }
+    
+    public void adDataTransferPanel(List<SanPham> list) {
+        this.removeAll();
+        this.listData = list;
+        for (SanPham sp: list){
+            adDataTransferPanel(sp);
+        }
+    }
+    
+    public void removeAll(){
+        this.panel.removeAll();
+        this.panel.revalidate();
+        this.panel.repaint();
+//        System.out.println("Call remove");
+        this.panel.setPreferredSize(new Dimension((int)this.panel.getPreferredSize().getWidth(),calculateHeight()));
+    }
+
+    public List<SanPham> getListData() {
+       return this.listData;
+    }
+
+    public void showProducts() {
+        List<SanPham> list = spbus.getAll();
+        this.adDataTransferPanel(list);
+    }
+
+   
+    
+}
