@@ -1,5 +1,5 @@
 # 🛒 Hệ Thống Quản Lý Siêu Thị Mini (MINI SUPERMARKET MANAGEMENT)
-# [ **Đồ án môn học: Cơ sở dữ liệu] _ Cô: Nguyễn Thị Tuyết Hải** - **Học viện Công nghệ Bưu chính Viễn thông cơ sở TP Hồ Chí Minh**  
+# [ **Đồ án môn học: Cơ sở dữ liệu] _ GV: Nguyễn Thị Tuyết Hải** - **Học viện Công nghệ Bưu chính Viễn thông cơ sở TP Hồ Chí Minh**  
 
 ![Badge Java](https://img.shields.io/badge/Language-Java-orange)
 ![Badge MySQL](https://img.shields.io/badge/Database-MySQL_8.0-blue)
