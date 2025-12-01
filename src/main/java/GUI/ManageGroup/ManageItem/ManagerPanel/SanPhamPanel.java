@@ -6,20 +6,11 @@ import BUS.BusAccessor.LoaiSanPhamBUS;
 import BUS.BusAccessor.SanPhamBUS;
 import DataTransfer.LoaiSanPham;
 import DataTransfer.SanPham;
-//import BUS.Excel.sanphamexcel;
-// import GUI.ManageGroup.ComponentPanel.ProductDetailPanel;
 import GUI.ManageGroup.ManageItem.FrameAdd.FrameAdd.SanPhamAdd;
 import GUI.ManageGroup.ManageItem.FrameAdd.FrameSua.SanPhamSua;
-// import java.awt.Dimension;
 import java.awt.event.MouseEvent;
-// import java.io.File;
 import java.util.List;
-// import java.util.Vector;
-// import javax.swing.BorderFactory;
-// import javax.swing.JFileChooser;
-// import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-// import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
@@ -84,7 +75,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
     // Load Table
     public void loadTable() {
         tableModel = (DefaultTableModel) jTable1.getModel();
-        jTable1.getTableHeader().setEnabled(false);
+        jTable1.getTableHeader().setEnabled(false); // không sửa được header
         List<SanPham> sp;
         if (jRadioButton1.isSelected()) {
             sp = spBUS.getAllSanPham();
@@ -125,6 +116,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
             TableColumn column = null;
             for (int i = 0; i < tableModel.getColumnCount(); i++) {
                 column = jTable1.getColumnModel().getColumn(i);
+                // Xét độ rộng culumn
                 switch (i) {
                     case 0 -> column.setPreferredWidth(30);
                     case 1 -> column.setPreferredWidth(50);
@@ -148,8 +140,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
         Xóa = new javax.swing.JMenuItem();
         jLabel81 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        button8 = new GUI.LoginGUI.Component.Button();
-        button5 = new GUI.LoginGUI.Component.Button();
+
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         button6 = new GUI.LoginGUI.Component.Button();
@@ -163,11 +154,6 @@ public class SanPhamPanel extends javax.swing.JPanel {
         jRadioButton1 = new javax.swing.JRadioButton();
 
         Sửa.setText("Sửa");
-        Sửa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SửaMouseClicked(evt);
-            }
-        });
         Sửa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SửaActionPerformed(evt);
@@ -205,30 +191,6 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
         add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 10, 30));
 
-        // button8.setBackground(new java.awt.Color(128, 0, 0));
-        // button8.setForeground(new java.awt.Color(255, 255, 255));
-        // button8.setText("NHẬP EXCEL");
-        // button8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        // button8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        // button8.addActionListener(new java.awt.event.ActionListener() {
-        //     public void actionPerformed(java.awt.event.ActionEvent evt) {
-        //         button8ActionPerformed(evt);
-        //     }
-        // });
-        // add(button8, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 110, 30));
-
-        // button5.setBackground(new java.awt.Color(128, 0, 0));
-        // button5.setForeground(new java.awt.Color(255, 255, 255));
-        // button5.setText("XUẤT EXCEL");
-        // button5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        // button5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        // button5.addActionListener(new java.awt.event.ActionListener() {
-        //     public void actionPerformed(java.awt.event.ActionEvent evt) {
-        //         button5ActionPerformed(evt);
-        //     }
-        // });
-        // add(button5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, 110, 30));
-
         jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(128, 0, 0));
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -250,6 +212,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
         button6.setText("+THÊM SẢN PHẨM");
         button6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         button6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button6MouseClicked(evt);
@@ -306,7 +269,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 960, 270));
         add(productDetailPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 950, -1));
 
-        jTextField1.setText("SREACH HERE!");
+        jTextField1.setText("");
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
@@ -347,7 +310,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
         int maSP = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
         sp = spBUS.get(maSP);
         System.out.println(sp.toString());
-        productDetailPanel1.setSanpham(sp);
+        productDetailPanel1.setSanpham(sp); // Sau khi lấy được sp từ db thì set vào panel bên phải
 
     }// GEN-LAST:event_jTable1MouseClicked
      // Turn on Frame Add
@@ -360,61 +323,9 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     // Load Again Table
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_button2MouseClicked
-        tableModel = (DefaultTableModel) jTable1.getModel();
-        jTable1.getTableHeader().setEnabled(false);
+
         tableModel.setRowCount(0);
-        tableModel = (DefaultTableModel) jTable1.getModel();
-        jTable1.getTableHeader().setEnabled(false);
-        List<SanPham> sp;
-        if (jRadioButton1.isSelected()) {
-            sp = spBUS.getAllSanPham();
-            if (sp == null || sp.isEmpty())
-                return;
-            for (int i = 0; i < sp.size(); i++) {
-                Object[] sanpham = { sp.get(i).getMaSP(), sp.get(i).getTenSP(), sp.get(i).getSoLuong(),
-                        sp.get(i).getGiaTien(), GetLoai(sp.get(i).getMaLoai()),
-                        spBUS.getSoLuongDaBan(sp.get(i).getMaSP()) };
-                tableModel.addRow(sanpham);
-            }
-
-            TableColumn column = null;
-            for (int i = 0; i < tableModel.getColumnCount(); i++) {
-                column = jTable1.getColumnModel().getColumn(i);
-                switch (i) {
-                    case 0 -> column.setPreferredWidth(30);
-                    case 1 -> column.setPreferredWidth(50);
-                    case 2 -> column.setPreferredWidth(50);
-                    case 3 -> column.setPreferredWidth(50);
-                    default -> {
-                    }
-                }
-            }
-        }
-
-        else {
-            sp = spBUS.getAll();
-            if (sp == null || sp.isEmpty())
-                return;
-            for (int i = 0; i < sp.size(); i++) {
-                Object[] sanpham = { sp.get(i).getMaSP(), sp.get(i).getTenSP(), sp.get(i).getSoLuong(),
-                        sp.get(i).getGiaTien(), GetLoai(sp.get(i).getMaLoai()),
-                        spBUS.getSoLuongDaBan(sp.get(i).getMaSP()) };
-                tableModel.addRow(sanpham);
-            }
-
-            TableColumn column = null;
-            for (int i = 0; i < tableModel.getColumnCount(); i++) {
-                column = jTable1.getColumnModel().getColumn(i);
-                switch (i) {
-                    case 0 -> column.setPreferredWidth(30);
-                    case 1 -> column.setPreferredWidth(50);
-                    case 2 -> column.setPreferredWidth(50);
-                    case 3 -> column.setPreferredWidth(50);
-                    default -> {
-                    }
-                }
-            }
-        }
+        loadTable();
 
     }// GEN-LAST:event_button2MouseClicked
      // Search Combobox
@@ -439,10 +350,6 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     }// GEN-LAST:event_jTable1MouseReleased
 
-    private void SửaMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_SửaMouseClicked
-
-    }// GEN-LAST:event_SửaMouseClicked
-
     private void SửaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_SửaActionPerformed
         SanPhamSua spSua = new SanPhamSua();
         int maSP = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
@@ -459,34 +366,11 @@ public class SanPhamPanel extends javax.swing.JPanel {
         spBUS.edit(maSP, spTemp);
     }// GEN-LAST:event_XóaActionPerformed
 
-    private void button5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_button5ActionPerformed
-        // sanphamexcel spexcel = new sanphamexcel();
-        // String url ="src\\main\\java\\BUS\\Excel\\sp.xlsx";
-        // spexcel.sanPhamtuDataBaseraExcel(url);
-        // JOptionPane.showMessageDialog(this, "Success");
-    }// GEN-LAST:event_button5ActionPerformed
-
-    private void button8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_button8ActionPerformed
-        // sanphamexcel sp = new sanphamexcel();
-        // JFileChooser fileChooser = new JFileChooser();
-        // FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("File
-        // excel", "xlsx");
-        // fileChooser.setFileFilter(imageFilter);
-        // fileChooser.setMultiSelectionEnabled(false);
-        // int x = fileChooser.showDialog(this, "Chon file");
-        // if(x == JFileChooser.APPROVE_OPTION){
-        // File file = fileChooser.getSelectedFile();
-        // sp.sanphamtuexcel(file);
-        // }
-    }// GEN-LAST:event_button8ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Sửa;
     private javax.swing.JMenuItem Xóa;
     private GUI.LoginGUI.Component.Button button2;
-    private GUI.LoginGUI.Component.Button button5;
     private GUI.LoginGUI.Component.Button button6;
-    private GUI.LoginGUI.Component.Button button8;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel47;

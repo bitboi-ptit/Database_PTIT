@@ -10,14 +10,12 @@ import javax.swing.JPanel;
 
 import org.imgscalr.Scalr;
 
-
-public class ImagePanel extends JPanel{
+public class ImagePanel extends JPanel {
     private ImageIcon image;
     private String path;
-    public final static String imgDirectory = "src/main/java/Assets/Image/";
+    public final static String imgDirectory = "src/main/java/Assets/Image/"; // dường dẫn tìm ảnh
     public final static String noImageProduct = "no-product";
     public final static String imgExtension = ".png";
-
 
     public Icon getImage() {
         return image;
@@ -27,13 +25,15 @@ public class ImagePanel extends JPanel{
         this.image = image;
         this.repaint();
     }
-     public final void setImagePathSanPham(String url){
+
+    public final void setImagePathSanPham(String url) {
         this.image = new ImageIcon(url);
         this.revalidate();
         this.repaint();
     }
-        public final void setImagePath(String url){
-        this.image = new ImageIcon(imgDirectory+url+imgExtension);
+
+    public final void setImagePath(String url) {
+        this.image = new ImageIcon(imgDirectory + url + imgExtension);
         this.revalidate();
         this.repaint();
     }
@@ -48,25 +48,26 @@ public class ImagePanel extends JPanel{
         this.revalidate();
         this.repaint();
     }
-    
+
     @Override
-    protected void paintComponent(Graphics g){
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (this.image != null){
+        if (this.image != null) {
             if (this.image.getIconWidth() < 0 || this.image.getIconHeight() < 0) {
                 this.setImagePath(noImageProduct);
                 return;
             }
             Graphics2D g2d = (Graphics2D) g.create();
-            g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION,
+                    java.awt.RenderingHints.VALUE_INTERPOLATION_BICUBIC);
             BufferedImage imageBuffer = getImgBuffer(this.image);
             BufferedImage buff = Scalr.resize(imageBuffer, getWidth());
-            g2d.drawImage(buff,0,0,null);
+            g2d.drawImage(buff, 0, 0, null);
             g2d.dispose();
         }
     }
-    
-    private BufferedImage getImgBuffer(ImageIcon icon){
+
+    private BufferedImage getImgBuffer(ImageIcon icon) {
         BufferedImage bi = new BufferedImage(
                 icon.getIconWidth(),
                 icon.getIconHeight(),
@@ -76,5 +77,5 @@ public class ImagePanel extends JPanel{
         g2d.dispose();
         return bi;
     }
-    
+
 }

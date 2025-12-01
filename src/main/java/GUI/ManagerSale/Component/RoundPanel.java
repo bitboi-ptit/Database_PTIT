@@ -1,29 +1,24 @@
 package GUI.ManagerSale.Component;
 
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
-/**
- *
- * @author huykh
- */
-public class RoundPanel extends JPanel{
+public class RoundPanel extends JPanel {
 
     {
         this.setOpaque(false);
     }
-    
-    public RoundPanel(){
+
+    public RoundPanel() {
     }
-    
-    public RoundPanel(int radius){
+
+    public RoundPanel(int radius) {
         this.radius = radius;
     }
-    
+
     @Override
-    protected void paintComponent(Graphics g){
+    protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(getBackground());
@@ -31,7 +26,7 @@ public class RoundPanel extends JPanel{
         g2d.dispose();
         super.paintComponent(g);
     }
-    
+
     protected int radius = 50;
 
     public int getRadius() {
@@ -41,5 +36,5 @@ public class RoundPanel extends JPanel{
     public void setRadius(int radius) {
         this.radius = radius;
     }
-    
+
 }

@@ -35,7 +35,7 @@ public class ConnectManager {
     public void openConnection(){
         try {
             this.connect = DriverManager.getConnection(url, username, password);
-            System.out.println("Connected to database successfully");
+            // System.out.println("Connected to database successfully");
         } catch (SQLException e) {
             System.out.println("Can't connect database " + url);
         }

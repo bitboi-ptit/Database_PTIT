@@ -7,10 +7,7 @@ package GUI.ManagerSale.BasicHandle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author MY ACER
- */
+
 public class EmailExample {
 
     private static Pattern pattern;

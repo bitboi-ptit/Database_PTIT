@@ -4,13 +4,6 @@
  */
 package GUI.ManagerSale.BasicHandle;
 
-/**
- *
- * @author MY ACER
- */
-
-
-
 public class EmailExampleTest {
     
     private static EmailExample emailExample;

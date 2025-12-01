@@ -11,10 +11,7 @@ import javax.swing.JList;
 
 import DataTransfer.LoaiSanPham;
 
-/**
- *
- * @author huykh
- */
+
 public class ComboboxLoaiSanPhamRender extends DefaultListCellRenderer{
 
     public ComboboxLoaiSanPhamRender() {

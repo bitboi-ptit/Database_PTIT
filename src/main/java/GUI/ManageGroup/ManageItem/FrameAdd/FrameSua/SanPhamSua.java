@@ -18,10 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
-/**
- *
- * @author ACER
- */
 public class SanPhamSua extends javax.swing.JFrame {
    private String url ;
       SanPhamValidate spVali = new SanPhamValidate();
@@ -36,14 +32,7 @@ public class SanPhamSua extends javax.swing.JFrame {
         nhaCungCapComboBox1.getNCCFromDatabase();
         cbLoai.getLoaiSPexAll();
     }
-//      public void Loadcb(){
-//         List <NhaCungCap> iNCC =nccBUS.getAll();
-//         if (iNCC == null || iNCC.isEmpty()) return;
-//        for(int i=0;i< iNCC.size();i++){
-//        cbNCC1.addItem(GetNcc(iNCC.get(i).getMaNCC()));
-//        }
-//       cbLoai.getLoaiSPexAll();
-//}
+
         public String GetNcc(int NCC){
         return  nccBUS.get(NCC).getTenNCC();
     }

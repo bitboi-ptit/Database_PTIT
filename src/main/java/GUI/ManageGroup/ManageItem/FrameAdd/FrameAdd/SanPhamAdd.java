@@ -9,9 +9,7 @@ import BUS.BusAccessor.NhaCungCapBUS;
 import BUS.BusAccessor.SanPhamBUS;
 import GUI.ManageGroup.Handle.SanPhamHandle.SanPhamToData;
 import GUI.ManageGroup.Handle.SanPhamHandle.SanPhamValidate;
-import DataTransfer.LoaiSanPham;
 import DataTransfer.NhaCungCap;
-import DataTransfer.SanPham;
 import GUI.ManageGroup.ManageItem.ManagerPanel.SanPhamPanel;
 import java.awt.Color;
 import java.io.File;
@@ -92,7 +90,6 @@ public class SanPhamAdd extends javax.swing.JFrame {
         shape1Layout.setVerticalGroup(
                 shape1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGap(0, 100, Short.MAX_VALUE));
-
 
         sanPhamAddBackground1.setBackground(new java.awt.Color(246, 158, 24));
         sanPhamAddBackground1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -205,7 +202,7 @@ public class SanPhamAdd extends javax.swing.JFrame {
 
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_button2MouseClicked
 
-        String maSanPham = tfMaSanPham.getText();
+        // String maSanPham = tfMaSanPham.getText();
         int maNhaCC = cbNCC.getSelectedIndex() + 1;
         String tenSanPham = tfSanPham.getText();
         int loai = cbLoai.getSelectedMaLoai();
@@ -225,13 +222,14 @@ public class SanPhamAdd extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("anh", "jpg", "png");
         fileChooser.setFileFilter(imageFilter);
-        fileChooser.setMultiSelectionEnabled(false);
-        int x = fileChooser.showDialog(this, "Chon file");
+        fileChooser.setMultiSelectionEnabled(false); // chỉ chọn 1 file
+        int x = fileChooser.showDialog(this, "Chon file"); // hiêu thị giao diện chọn file
         if (x == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
 
             String[] parts = file.getName().split("\\.");
             url = parts[0];
+            // Hiển thị ảnh lên giao diện
             imagePanel2.setImagePathSanPham(file.getAbsolutePath());
             imagePanel2.setBackground(Color.decode("#F69E18"));
         }
@@ -245,15 +243,7 @@ public class SanPhamAdd extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-        // (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-         * look and feel.
-         * For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
